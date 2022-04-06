@@ -16,7 +16,7 @@ class _randomCardState extends State<randomCard> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(''),
+        title: Center(child: Text('CARD TAROT')),
         backgroundColor: Colors.orangeAccent,
       ),
       body: Stack(
@@ -30,23 +30,21 @@ class _randomCardState extends State<randomCard> {
             ),
             child: null /* add child content here */,
           ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 50.0),
-            child: Center(
-              child: Image.asset(
-                'assets/images/card1234.png',
-                width: 400,
-                height: 400,
-              ),
+          /*Center(
+            child:
+          ),*/
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Image.asset(
+              'assets/images/carddeck.png',
+              width: 400,
+              height: 400,
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 135.0, right: 135.0,top: 220),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                RaisedButton(
+              Padding(
+                padding: const EdgeInsets.only(left: 200.0, right: 200.0),
+                child: RaisedButton(
                   onPressed: () {
                     showDialog(
                       context: context,
@@ -89,70 +87,65 @@ class _randomCardState extends State<randomCard> {
                           content: Text(
                               'กรุณาตั้งจิตให้มั่นคงแล้วกดตกลงเพื่อดูไพ่ที่คุณเปิดได้'),
                           actions: [
-                            Row(
-                              //crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 75),
-                                  child: RaisedButton(
-                                    color: Colors.deepOrange.shade400,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10.0),
-                                      side: BorderSide(
-                                        color: Colors.black.withOpacity(0.9),
-                                        width: 3,
-                                      ),
-                                    ),
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                    },
-                                    child: Container(
-                                      constraints: BoxConstraints(
-                                          maxWidth: 50.0, minHeight: 20.0),
-                                      alignment: Alignment.center,
-                                      child: Text(
-                                        "ยกเลิก",
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                            color: Colors.white, fontSize: 14),
-                                      ),
-                                    ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 75),
+                              child: RaisedButton(
+                                color: Colors.deepOrange.shade400,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  side: BorderSide(
+                                    color: Colors.black.withOpacity(0.9),
+                                    width: 3,
                                   ),
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 10),
-                                  child: RaisedButton(
-                                    color: Colors.indigo.shade300,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10.0),
-                                      side: BorderSide(
-                                        color: Colors.black.withOpacity(0.9),
-                                        width: 3,
-                                      ),
-                                    ),
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) => pickCards(),
-                                        ),
-                                      );
-                                    },
-                                    child: Container(
-                                      constraints: BoxConstraints(
-                                          maxWidth: 40.0, minHeight: 20.0),
-                                      alignment: Alignment.center,
-                                      child: Text(
-                                        "ตกลง",
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                            color: Colors.white, fontSize: 14),
-                                      ),
-                                    ),
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: Container(
+                                  constraints: BoxConstraints(
+                                      maxWidth: 50.0, minHeight: 20.0),
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    "ยกเลิก",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 14),
                                   ),
                                 ),
-                              ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(10),
+                              child: RaisedButton(
+                                color: Colors.indigo.shade300,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  side: BorderSide(
+                                    color: Colors.black.withOpacity(0.9),
+                                    width: 3,
+                                  ),
+                                ),
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => pickCards(),
+                                    ),
+                                  );
+                                },
+                                child: Container(
+                                  constraints: BoxConstraints(
+                                      maxWidth: 40.0, minHeight: 20.0),
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    "ตกลง",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 14),
+                                  ),
+                                ),
+                              ),
                             ),
                           ],
                         );
@@ -196,8 +189,8 @@ class _randomCardState extends State<randomCard> {
                     ],
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ],
       ),

@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:final_project/pages/siemsee/shake.dart';
 import 'package:final_project/pages/siemsee/siemsee.dart';
 import 'package:flutter/cupertino.dart';
@@ -24,7 +25,7 @@ class _selectModeState extends State<selectMode> {
   final List<catagory> cata = [
     catagory(
       image: 'card.png',
-      title: 'ทำนายโดยใช้ไพ่ทาโร่',
+      title: 'ทำนายโดยใช้ไพ่ยิปซี',
       sometext: '50 บาท',
     ),
     catagory(
@@ -45,7 +46,7 @@ class _selectModeState extends State<selectMode> {
   }
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title:Text(' ยินดีต้อนรับคุณ.. $_name '),
+      appBar: AppBar(title:Center(child: Text('MENU')),
         backgroundColor: Colors.orangeAccent,),
       body: Stack(
         children: [
@@ -59,73 +60,107 @@ class _selectModeState extends State<selectMode> {
             ),
           ),
 
-          Expanded(
-            child: ListView.builder(
-              padding: const EdgeInsets.all(20),
-              itemCount: cata.length,
-              itemBuilder: (BuildContext context, int index) {
-                return Container(
-                  height: 120,
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10), // if you need this
-                      side: BorderSide(
-                        color: Colors.black.withOpacity(0.9),
-                        width:4,
+          Stack(
+            children: [
+              Column(
+                //crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 50.0, left: 50, right: 50,bottom: 50),
+                    child: SizedBox(
+                      //width: 400.0,
+                      child: DefaultTextStyle(
+                        style: const TextStyle(
+                          fontSize: 26.0,
+                          fontFamily: 'Bluemoon_SemesterOpen',
+                          color: Colors.white,
+                        ),
+                        child: AnimatedTextKit(
+                          isRepeatingAnimation: false,
+
+                          animatedTexts: [
+                            TypewriterAnimatedText('ยินดีต้อนรับคุณ $_name \n..สู่สำนักหมอดูโบโบ้ 🐶'),
+                          ],
+                          onTap: () {
+                            print("Tap Event");
+                          },
+                        ),
                       ),
-
                     ),
-                    // height: 50,
-                    color: Colors.white,
-                    clipBehavior: Clip.antiAliasWithSaveLayer,
-                    margin: const EdgeInsets.all(8.0),
-                    elevation: 5.0,
-                    shadowColor: Colors.black.withOpacity(0.2),
+                  ),
+                  Expanded(
+                    child: ListView.builder(
+                      padding: const EdgeInsets.only(left: 100, right: 100, top: 0),
+                      itemCount: cata.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Container(
+                          height: 120,
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10), // if you need this
+                              side: BorderSide(
+                                color: Colors.black.withOpacity(0.9),
+                                width:4,
+                              ),
 
-                    child: InkWell(
-                      onTap: () {
-                        _handleClickItem(index);
-                      },
-                      child: Row(
-                        children: <Widget>[
-                          Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: Image.asset('assets/images/${cata[index].image}',
-                              width: 80.0,
-                              height: 80.0,
-                              fit: BoxFit.cover,
                             ),
-                          ),
-                          Expanded(
-                            child: Container(
-                              padding: const EdgeInsets.all(10.0),
+                            // height: 50,
+                            color: Colors.white,
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            margin: const EdgeInsets.all(8.0),
+                            elevation: 5.0,
+                            shadowColor: Colors.black.withOpacity(0.2),
+
+                            child: InkWell(
+                              onTap: () {
+                                _handleClickItem(index);
+                              },
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: <Widget>[
-                                  Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: <Widget>[
-                                      Text(
-                                        '\n${cata[index].title}' , style: TextStyle(fontWeight: FontWeight.bold,  fontSize: 16)
-                                       // style: GoogleFonts.prompt(fontSize: 20.0),
+                                  Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    child: Image.asset('assets/images/${cata[index].image}',
+                                      width: 80.0,
+                                      height: 80.0,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Container(
+                                      padding: const EdgeInsets.all(10.0),
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: <Widget>[
+                                          Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: <Widget>[
+                                              Text(
+                                                  '\n${cata[index].title}' , style: TextStyle(fontWeight: FontWeight.bold,  fontSize: 16)
+                                                // style: GoogleFonts.prompt(fontSize: 20.0),
+                                              ),
+                                              Text(
+                                                  '${cata[index].sometext}' , style: TextStyle( fontSize: 15)
+                                                //style: GoogleFonts.prompt(fontSize: 15.0),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
                                       ),
-                                      Text(
-                                        '${cata[index].sometext}' , style: TextStyle( fontSize: 15)
-                                        //style: GoogleFonts.prompt(fontSize: 15.0),
-                                      ),
-                                    ],
+                                    ),
                                   ),
                                 ],
                               ),
                             ),
                           ),
-                        ],
-                      ),
+                        );
+                      },
                     ),
                   ),
-                );
-              },
-            ),
+                ],
+              ),
+
+            ],
           ),
         ],
       ),

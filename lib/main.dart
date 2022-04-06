@@ -1,3 +1,4 @@
+import 'package:final_project/pages/card_tarot/cardRandom.dart';
 import 'package:final_project/pages/card_tarot/cardWood.dart';
 import 'package:final_project/pages/chooseagain.dart';
 import 'package:final_project/pages/home.dart';
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
 
         primarySwatch: Colors.blue,
       ),
-      home: const DooDuang(),
+      home: const randomCard(),
     );
   }
 }

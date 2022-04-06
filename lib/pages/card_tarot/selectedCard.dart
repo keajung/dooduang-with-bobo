@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../model/cardTarots22.dart';
@@ -711,13 +712,10 @@ class _pickCardsState extends State<pickCards> {
   Widget build(BuildContext context) {
     
       List<String> folder = ['ไพ่ชุดใหญ่','ไพ่ดาบ','ไพ่ถ้วย','ไพ่เหรียญ','ไพ่ไม้'];
-
-   
-
       List<String> img = ['${number[0]}.png','${number[1]}.png','${number[2]}.png','${number[3]}.png','${number[4]}.png'];
 
     return Scaffold(
-      appBar: AppBar(title:Text(''),
+      appBar: AppBar(title:Center(child: Text('SHOW YOUR FUTURE')),
         backgroundColor: Colors.orangeAccent,),
       body: Stack(
         children : [
@@ -730,130 +728,113 @@ class _pickCardsState extends State<pickCards> {
             ),
             child: null /* add child content here */,
           ),
-          Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Stack(
-                children: [
-                  Container(
-                    height: 300,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: 5,
-                      itemBuilder: (BuildContext context, int position) {
-                        return InkWell(
-                        onTap: () => setState(() => selectedIndex=position),
-                          child: Container(
-                            width: 150,
-                            child: Column(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(bottom: 8.0),
-                                  child: Text(position==4 ? 'ด้านการงาน' : position==3 ? 'ด้านการเงิน' : position==2 ? 'ด้านความรู้สึก' : position==1 ? 'ด้านความคิด' : 'ชีวิตช่วงนี้',
-                                    style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
-                                  ),
-                                ),
-                                Card(
-                                  shape: (selectedIndex==position) ?
-                                  RoundedRectangleBorder(
-                                      side: BorderSide(color: Colors.red))
-                                      : null,
-                                  elevation: 5,
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: <Widget>[
-                                      Image.asset(
-                                        'assets/images/cards/${folder[position]}/${img[position]}',
-                                        width: 200,
-                                        height: 250,
-                                        fit: BoxFit.contain,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 248,top: 290),
-                    child: RaisedButton(
-                      onPressed: () {
-                        print('selected $selectedIndex');
-                        print('selected ${folder[selectedIndex]}');
-                        print('img ${img[selectedIndex]}');
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Container(
 
-                        if(folder[selectedIndex]=='ไพ่ชุดใหญ่'){
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => tarotCard(position: number[0]-1)),
-                          );
-                        }else if(folder[selectedIndex]=='ไพ่ถ้วย'){
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => cardCup(position: number[2]-1)),
-                          );
-                        }else if(folder[selectedIndex]=='ไพ่เหรียญ'){
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => cardCoin(position: number[3]-1)),
-                          );
-                        }else if(folder[selectedIndex]=='ไพ่ดาบ'){
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => cardSword(position: number[1]-1)),
-                          );
-                        }else if(folder[selectedIndex]=='ไพ่ไม้'){
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => tarotsWood(position: number[4]-1)),
-                          );
-                        }
-
-                        },
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(80.0),
-                        side: BorderSide(
-                          color: Colors.black.withOpacity(0.9),
-                          width:3.5,
-                        ),
-                      ),
-                      padding: EdgeInsets.all(0.0),
-                      child: Ink(
-                        decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              colors: [
-                                Colors.orangeAccent,Colors.orangeAccent,
-                              ],
-                              begin: Alignment.centerLeft,
-                              end: Alignment.centerRight,
-                            ),
-                            borderRadius: BorderRadius.circular(30.0)
-                        ),
-                        child: Container(
-                          constraints:
-                          BoxConstraints(maxWidth: 85.0, minHeight: 30.0),
-                          alignment: Alignment.center,
-                          child: Text(
-                            "เปิดไพ่",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(color: Colors.white, fontSize: 15),
+              height: 700,
+              child: ListView.builder(
+                scrollDirection: Axis.vertical,
+                itemCount: 5,
+                itemBuilder: (BuildContext context, int position) {
+                  return InkWell(
+                  onTap: () => setState(() => selectedIndex=position),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 10.0,top: 20.0),
+                          child: Text(position==4 ? 'ด้านการงาน' : position==3 ? 'ด้านการเงิน' : position==2 ? 'ด้านความรู้สึก' : position==1 ? 'ด้านความคิด' : 'ชีวิตช่วงนี้',
+                            style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
                           ),
                         ),
-                      ),
+                        Card(
+                          shape: (selectedIndex==position) ?
+                          RoundedRectangleBorder(
+                              side: BorderSide(color: Colors.amber, width: 5))
+                              : null,
+                          elevation: 5,
+                          child: Image.asset(
+                            'assets/images/cards/${folder[position]}/${img[position]}',
+                            width: 200,
+                            height: 350,
+                            fit: BoxFit.contain,
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                ],
+                  );
+                },
               ),
             ),
-          ],
-        ),
+          ),
+        /*  Padding(
+            padding: const EdgeInsets.only(left: 248,top: 290),
+            child: RaisedButton(
+              onPressed: () {
+                print('selected $selectedIndex');
+                print('selected ${folder[selectedIndex]}');
+                print('img ${img[selectedIndex]}');
+
+                if(folder[selectedIndex]=='ไพ่ชุดใหญ่'){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => tarotCard(position: number[0]-1)),
+                  );
+                }else if(folder[selectedIndex]=='ไพ่ถ้วย'){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => cardCup(position: number[2]-1)),
+                  );
+                }else if(folder[selectedIndex]=='ไพ่เหรียญ'){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => cardCoin(position: number[3]-1)),
+                  );
+                }else if(folder[selectedIndex]=='ไพ่ดาบ'){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => cardSword(position: number[1]-1)),
+                  );
+                }else if(folder[selectedIndex]=='ไพ่ไม้'){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => tarotsWood(position: number[4]-1)),
+                  );
+                }
+
+                },
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(80.0),
+                side: BorderSide(
+                  color: Colors.black.withOpacity(0.9),
+                  width:3.5,
+                ),
+              ),
+              padding: EdgeInsets.all(0.0),
+              child: Ink(
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        Colors.orangeAccent,Colors.orangeAccent,
+                      ],
+                      begin: Alignment.centerLeft,
+                      end: Alignment.centerRight,
+                    ),
+                    borderRadius: BorderRadius.circular(30.0)
+                ),
+                child: Container(
+                  constraints:
+                  BoxConstraints(maxWidth: 85.0, minHeight: 30.0),
+                  alignment: Alignment.center,
+                  child: Text(
+                    "เปิดไพ่",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: Colors.white, fontSize: 15),
+                  ),
+                ),
+              ),
+            ),
+          ),*/
       ],
       ),
     );

@@ -14,7 +14,7 @@ class _shakeState extends State<shake> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(''),
+        title: Text('SIAMESE'),
         backgroundColor: Colors.orangeAccent,
       ),
       body:  Stack(
